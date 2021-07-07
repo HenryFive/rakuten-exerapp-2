@@ -4,6 +4,9 @@
 <head>
 <meta charset="utf-8"/>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <title>Product Manager</title>
     <style>
         * {
@@ -14,13 +17,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-item: center;
+            align-items: center;
         }
         h1 {
             text-align: center;
         }
-        .table {
-            margin-top: 20px;
+        .container .table {
+            width: 80%;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 10px;
@@ -48,18 +51,24 @@
             margin-top: 20px;
             display: flex;
             justify-content: center;
-            align-item: center;
+            align-items: center;
         }
         .link {
-            font-size: 18px;
+            font-size: 27px;
             padding: 0 5px;
             border: 2px solid #ffffff;
             border-radius: 6px;
         }
         .link:hover {
-            border: none;
+            cursor: pointer;
             color: #161618;
             background: #ffffff;
+        }
+        .green {
+            color: #008000;
+        }
+        .red {
+            color: 	#FF0000;
         }
     </style>
 </head>
@@ -83,8 +92,8 @@
             <h4 th:text="${product.discountPrice}">Discounted Price</h4>
             <h4 th:text="${product.price}">Price</h4>
             <div class="actions">
-                <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
-                <a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+                <a th:href="@{'/edit/' + ${product.id}}"><i class="fas fa-edit green"></i></a>
+                <a th:href="@{'/delete/' + ${product.id}}"><i class="fas fa-trash red"></i></a>
             </div>
         </div>
     </div>
