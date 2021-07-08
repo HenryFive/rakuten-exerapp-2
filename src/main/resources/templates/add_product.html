@@ -3,6 +3,9 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <title>Add Product</title>
     <style>
         * {
@@ -10,8 +13,22 @@
           color: #ffffff;
           font-size: 18px;
         }
+        .container{
+          height: 100vh;
+          width: 100vw;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         h1{
           font-size: 24px;
+          margin-bottom: 100px;
+        }
+        form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
         input {
           border: none;
@@ -19,44 +36,72 @@
           height: 18px;
           text-align: center;
         }
+        .table {
+          width: 500px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 5px;
+          border: 2px solid #ffffff;
+          border-radius: 6px;
+        }
+        .table * {
+          background: #585858;
+        }
+        .table .row {
+          width: 500px;
+          display: flex;
+          align-items: center;
+        }
+        .row h4 {
+          width: 150px;
+          margin-left: 50px;
+          padding: 0 10px;
+        }
         button {
-          border: 1px solid #ffffff;
+          margin-top: 20px;
+          border: 1px solid #0066FF;
           border-radius: 6px;
         }
         button:hover {
           cursor: pointer;
-          background: #ffffff;
-          color: #161618;
+          border: 1px solid #ffffff;
+        }
+        .blue {
+          color: #0066FF;
+          font-size: 50px;
+        }
+        button:hover .blue{
+          color: #ffffff;
         }
     </style>
 </head>
 <body>
-  <div align="center">
+  <div class="container">
     <h1>ADD PRODUCT</h1>
     <form action="#" th:action="@{/save}" th:object="${product}"
           method="post">
 
-      <table border="0" cellpadding="10">
-        <tr>
-          <td>Product Name: </td>
-          <td><input type="text" th:field="*{name}" /></td>
-        </tr>
-        <tr>
-          <td>Brand: </td>
-          <td><input type="text" th:field="*{brand}" /></td>
-        </tr>
-        <tr>
-          <td>Discounted Price: </td>
-          <td><input type="number" th:field="*{discountPrice}" /></td>
-        </tr>
-        <tr>
-          <td>Price: </td>
-          <td><input type="number" th:field="*{price}" /></td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><button type="submit">Save</button></td>
-        </tr>
-      </table>
+      <div class="table">
+        <div class="row">
+          <h4>Product Name:</h4>
+          <input type="text" th:field="*{name}" />
+        </div>
+        <div class="row">
+          <h4>Brand:</h4>
+          <input type="text" th:field="*{brand}" />
+        </div>
+        <div class="row">
+          <h4>Discount Price:</h4>
+          <input type="number" th:field="*{discountPrice}" />
+        </div>
+        <div class="row">
+          <h4>Price:</h4>
+          <input type="number" th:field="*{price}" />
+        </div>
+      </div>
+      <button type="submit"><i class="fas fa-save blue"></i></button>
+
     </form>
   </div>
 </body>
