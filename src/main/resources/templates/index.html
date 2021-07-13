@@ -3,11 +3,152 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <title>Product Manager</title>
+    <style>
+        * {
+            background: #202020;
+            color: #ffffff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .head {
+            width: 950px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+        }
+        .table{
+            padding: 10px;
+            border: 2px solid #d3d3d3;
+            border-radius: 6px;
+        }
+        .table * {
+          background: #585858;
+        }
+        .container .row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            grid-auto-rows: minmax(40px, auto);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #ffffff;
+        }
+        .row h2 {
+            text-align: center;
+        }
+        .row h4 {
+            text-align: center;
+            margin: 0;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .actions a{
+            padding: 10px;
+        }
+        .container-link {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .link {
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #0066FF;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .link:hover {
+            cursor: pointer;
+            border: 1px solid #ffffff;
+        }
+        .blue {
+            font-size: 18px;
+            color: #0066FF;
+            font-size: 18px;
+        }
+        .link:hover .blue{
+          color: #ffffff;
+        }
+        .green {
+            color: #008000;
+        }
+        .green:hover {
+            color: #ffffff;
+        }
+        .red {
+            color: 	#FF0000;
+        }
+        .red:hover {
+            color: #ffffff;
+        }
+        .price {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 50px;
+        }
+        .text {
+            display: flex;
+            padding: 0 5px;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Home view</h1>
+<div class="container">
+        <div class="head">
+            <h1>PRODUCT VIEW</h1>
+            <div class="container-link">
+                <a class="link" href="add"><i class="fas fa-plus-square blue"></i></a>
+            </div>
+        </div>
+
+        <div class="table">
+            <div class="row">
+                <h2>Product ID</h2>
+                <h2>Name</h2>
+                <h2>Brand</h2>
+                <h2>Discount Price</h2>
+                <h2>Price</h2>
+                <h2></h2>
+            </div>
+            <div class="row" th:each="product: ${listProducts}">
+                <h4 th:text="${product.id}">Product ID</h4>
+                <h4 th:text="${product.name}">Name</h4>
+                <h4 th:text="${product.brand}">Brand</h4>
+                <div class="price">
+                    <h4 class="text">Php</h4>
+                    <h4 th:text="${product.discountPrice}">Discounted Price</h4>
+                </div>
+                <div class="price">
+                    <h4 class="text">Php</h4>
+                    <h4 th:text="${product.price}">Price</h4>
+                </div>
+                <div class="actions">
+                    <a th:href="@{'/edit/' + ${product.id}}"><i class="fas fa-edit green"></i></a>
+                    <a th:href="@{'/delete/' + ${product.id}}"><i class="fas fa-trash red"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
